@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="apk" name="locknotes">
+    <output-path>$PROJECT_DIR$/build/classes/artifacts/locknotes</output-path>
+    <properties id="android-properties">
+      <options>
+        <option name="keyStoreUrl" value="file://" />
+      </options>
+    </properties>
+    <root id="archive" name="locknotes.apk" />
+  </artifact>
+</component>

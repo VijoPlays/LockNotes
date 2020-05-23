@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LockNotes</string>
+    <string name="open_onenote">Open OneNote</string>
+    <string name="set_reminder">set Reminder</string>
+</resources>
