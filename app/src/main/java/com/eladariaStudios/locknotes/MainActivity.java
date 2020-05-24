@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -27,6 +28,7 @@ import androidx.core.app.NotificationManagerCompat;
 public class MainActivity extends AppCompatActivity {
     private final String channelID = "personal_notifications";
     private String notification = "";
+    private final int vijoGreenInInt = Color.rgb(0, 255, 160);
     private EditText reminderText;
 
     @Override
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setContentText(notification);
         builder.setStyle(bigTextStyle);
         builder.setSmallIcon(R.drawable.ic_locknotes_small);
+        builder.setColor(vijoGreenInInt);
 
         if(!notification.equals("")){
             Intent intent = new Intent(this, MainActivity.class);
