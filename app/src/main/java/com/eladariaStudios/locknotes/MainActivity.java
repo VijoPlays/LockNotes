@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private final int vijoGreenInInt = Color.rgb(0, 255, 160);
     private EditText reminderText;
 
+    //TODO: Switch + onPause save notification (maybe add autoReminder)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
