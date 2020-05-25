@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private String notification = "";
     private final int vijoGreenInInt = Color.rgb(0, 255, 160);
     private EditText reminderText;
+    private boolean autoRemind = false;
 
     //TODO: Switch + onPause save notification (maybe add autoReminder)
 
@@ -37,11 +38,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         notification = sharedPreferences.getString("notification", "");
         reminderText = findViewById(R.id.reminderText);
         reminderText.setText(notification);
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        if(autoRemind){
+            newReminder(findViewById(android.R.id.content).getRootView());
+        } else {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("notification", notification);
+            editor.apply();
+        }
     }
 
     public void openOneNote(View view){
@@ -53,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(MainActivity.this, "OneNote does not exist on this device, bromigo. Please download it from the store to use this feature.", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void changeAutoRemind(View view){
+        autoRemind = !autoRemind;
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("autoRemind", autoRemind);
+        editor.apply();
     }
 
     // Currently not in use
