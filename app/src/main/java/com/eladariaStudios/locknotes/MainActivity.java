@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         notification = sharedPreferences.getString("notification", "");
+        autoRemind = sharedPreferences.getBoolean("autoRemind", false);
         reminderText = findViewById(R.id.reminderText);
         reminderText.setText(notification);
     }
