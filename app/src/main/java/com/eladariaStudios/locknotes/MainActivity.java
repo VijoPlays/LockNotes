@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -30,25 +31,30 @@ public class MainActivity extends AppCompatActivity {
     private final String channelID = "personal_notifications";
     private String notification = "";
     private final int vijoGreenInInt = Color.rgb(0, 255, 160);
+    private int nightMode = 0;
     private EditText reminderText;
     private boolean autoRemind = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+    }   //TODO: Add clear button to clear editbox
+        //TODO: Clear notifications if editbox is empty
 
     @Override
     protected void onResume(){
         super.onResume();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        notification = sharedPreferences.getString("notification", "");
         autoRemind = sharedPreferences.getBoolean("autoRemind", false);
         Switch switch_autoReminder = findViewById(R.id.switch_autoReminder);
         switch_autoReminder.setChecked(autoRemind);
+        notification = sharedPreferences.getString("notification", "");
         reminderText = findViewById(R.id.reminderText);
         reminderText.setText(notification);
+        nightMode = sharedPreferences.getInt("nightMode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        AppCompatDelegate.setDefaultNightMode(nightMode);
     }
 
     @Override
@@ -74,6 +80,15 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "OneNote does not exist on this device, bromigo. Please download it from the store to use this feature.", Toast.LENGTH_LONG).show();
         }
     }
+    //TODO: Add Dark Mode slider
+    public void changeDarkMode(View view){
+        nightMode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("nightMode", nightMode);
+        editor.apply();
+    }
+
 
     public void changeAutoRemind(View view){
         autoRemind = !autoRemind;
