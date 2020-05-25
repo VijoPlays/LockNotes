@@ -19,7 +19,7 @@ import androidx.core.app.NotificationManagerCompat;
 /**
  * This app allows you to open OneNote and set a reminder on your lock screen, if your short term memory is as good as mine.
  *
- * @version 1.1
+ * @version 1.2
  * @author Alexander "Vijo" Ott
  * @license GNU GPLv3
  * @contact twitter.com/vijoplays
@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private final int vijoGreenInInt = Color.rgb(0, 255, 160);
     private EditText reminderText;
     private boolean autoRemind = false;
-
-    //TODO: Switch + onPause save notification (maybe add autoReminder)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
