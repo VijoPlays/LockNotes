@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private String notification = "";
     private final int vijoGreenInInt = Color.rgb(0, 255, 160);
     private EditText reminderText;
+    private Switch switch_autoReminder;
     private boolean autoRemind = false;
 
     @Override
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         notification = sharedPreferences.getString("notification", "");
         autoRemind = sharedPreferences.getBoolean("autoRemind", false);
+        switch_autoReminder = findViewById(R.id.switch_autoReminder);
+        switch_autoReminder.setChecked(autoRemind);
         reminderText = findViewById(R.id.reminderText);
         reminderText.setText(notification);
     }
