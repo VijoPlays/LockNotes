@@ -3,6 +3,7 @@ package com.eladariaStudios.locknotes;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
     }   //TODO: Add clear button to clear editbox
-        //TODO: Clear notifications if editbox is empty
         //TODO: Dark Mode
 
     @Override
@@ -127,7 +127,8 @@ public class MainActivity extends AppCompatActivity {
         builder.setSmallIcon(R.drawable.ic_locknotes_small);
         builder.setColor(vijoGreenInInt);
 
-        if(!notification.equals("")){
+        String trimmedNotification = notification.trim();
+        if(!trimmedNotification.equals("")){
             Intent intent = new Intent(this, MainActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -136,6 +137,10 @@ public class MainActivity extends AppCompatActivity {
 
             NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
             notificationManagerCompat.notify(1, builder.build());
+        } else {
+            notification = "";
+            NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.cancel(1);
         }
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
