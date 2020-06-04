@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
     }   //TODO: Add clear button to clear editbox
         //TODO: Clear notifications if editbox is empty
+        //TODO: Dark Mode
 
     @Override
     protected void onResume(){
