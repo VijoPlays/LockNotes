@@ -16,13 +16,14 @@ import android.widget.Switch;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 /**
  * This app allows you to open OneNote and set a reminder on your lock screen, if your short term memory is as good as mine.
  *
- * @version 1.2
+ * @version 1.3
  * @author Alexander "Vijo" Ott
  * @license GNU GPLv3
  * @contact twitter.com/vijoplays
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private final int vijoGreenInInt = Color.rgb(0, 255, 160);
     private int nightMode = 0;
     private EditText reminderText;
+    private Toolbar toolbar;
     private boolean autoRemind = false;
 
     @Override
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
     }   //TODO: Add clear button to clear editbox
-        //TODO: Dark Mode
+        //TODO: Dark Mode (in toolbar/action bar)
 
     @Override
     protected void onResume(){
@@ -53,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         switch_autoReminder.setChecked(autoRemind);
         notification = sharedPreferences.getString("notification", "");
         reminderText = findViewById(R.id.reminderText);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         reminderText.setText(notification);
         nightMode = sharedPreferences.getInt("nightMode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         AppCompatDelegate.setDefaultNightMode(nightMode);
@@ -127,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
         builder.setSmallIcon(R.drawable.ic_locknotes_small);
         builder.setColor(vijoGreenInInt);
 
-        String trimmedNotification = notification.trim();
-        if(!trimmedNotification.equals("")){
+        notification = notification.trim();
+        if(!notification.equals("")){
             Intent intent = new Intent(this, MainActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -138,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
             NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
             notificationManagerCompat.notify(1, builder.build());
         } else {
-            notification = "";
             NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.cancel(1);
         }
