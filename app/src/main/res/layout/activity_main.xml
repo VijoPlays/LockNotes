@@ -8,9 +8,62 @@
         android:forceDarkAllowed="true"
         tools:context=".MainActivity">
 
-    <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar"/>
+    <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_reminder"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/appBarLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/constraintLayout">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:theme="?attr/actionBarTheme"
+                    android:minHeight="?attr/actionBarSize"
+                    android:id="@+id/toolbar"
+                    app:title="@string/app_name"
+                    app:titleTextColor="@color/colorPrimaryDark"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_menu_compass"
+                    android:id="@+id/button_settings"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="10dp"
+                    android:onClick="openSettings"
+                    android:contentDescription="@string/opens_settings_descriptions" tools:visibility="visible"/>
+
+            <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    app:srcCompat="@drawable/ic_locknotes_delete"
+                    app:tint="@color/colorPrimaryDark"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="12dp"
+                    app:layout_constraintVertical_bias="0.0"
+                    android:tint="@color/colorPrimaryDark"
+                    android:onClick="clearEditBox"
+                    android:id="@+id/button_delete"
+                    android:contentDescription="@string/button_delete_description"
+                    app:layout_constraintEnd_toStartOf="@+id/button_settings"
+                    app:layout_constraintStart_toStartOf="@+id/toolbar" android:layout_marginStart="280dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <Switch
             android:text="@string/auto_remind"
@@ -23,9 +76,12 @@
             app:layout_constraintBottom_toTopOf="@+id/reminderText"
             android:onClick="changeAutoRemind"
             android:layout_marginTop="64dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.239"
-            app:layout_constraintEnd_toStartOf="@+id/button_reminder" android:layout_marginEnd="66dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.239"
+            app:layout_constraintEnd_toStartOf="@+id/button_reminder"
+            android:layout_marginEnd="66dp"
             app:layout_constraintHorizontal_bias="0.0"/>
+
     <Button
             android:text="@string/set_reminder"
             android:layout_width="wrap_content"
@@ -35,8 +91,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="52dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="288dp" app:layout_constraintHorizontal_bias="0.568"
-            android:layout_marginTop="36dp" app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+            android:layout_marginStart="288dp"
+            app:layout_constraintHorizontal_bias="0.568"
+            android:layout_marginTop="36dp"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,6 +114,7 @@
             android:layout_marginTop="42dp"
             app:layout_constraintTop_toBottomOf="@+id/button_reminder"
             android:visibility="visible"/>
+
     <Button
             android:text="@string/open_onenote"
             android:layout_width="wrap_content"
@@ -71,6 +130,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="560dp"
             app:layout_constraintTop_toTopOf="parent"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
