@@ -23,7 +23,7 @@ import androidx.core.app.NotificationManagerCompat;
 /**
  * This app allows you to open OneNote and set a reminder on your lock screen, if your short term memory is as good as mine.
  *
- * @version 1.3
+ * @version 1.3.2
  * @author Alexander "Vijo" Ott
  * @license GNU GPLv3
  * @contact twitter.com/vijoplays
@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         if(autoRemind){
             newReminder(findViewById(android.R.id.content).getRootView());
         } else {
+            setNotification(String.valueOf(reminderText.getText()));
+            notification = notification.trim();
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("notification", notification);
@@ -148,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
         editor.putString("notification", notification);
         editor.apply();
     }
