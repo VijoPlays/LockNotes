@@ -26,7 +26,7 @@ import com.google.android.material.appbar.AppBarLayout;
  * This app allows you to open OneNote and set a reminder on your lock screen, if your short term memory is as good as mine.
  *
  * @author Alexander "Vijo" Ott
- * @version 1.4
+ * @version 1.5
  * @license GNU GPLv3
  * @contact twitter.com/vijoplays
  * @youtube youtube.com/c/vijoplays
@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+
+         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
     }
     //TODO: Dark Mode (in toolbar/action bar)
 
