@@ -72,15 +72,12 @@
             android:id="@+id/switch_autoReminder"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="52dp"
-            android:layout_marginBottom="76dp"
-            app:layout_constraintBottom_toTopOf="@+id/reminderText"
             android:onClick="changeAutoRemind"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="104dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.696"
             app:layout_constraintEnd_toStartOf="@+id/button_reminder"
             android:layout_marginEnd="66dp"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintHorizontal_bias="0.35"/>
     <Button
             android:text="@string/set_reminder"
             android:layout_width="wrap_content"
@@ -105,15 +102,14 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="27dp"
             android:autofillHints=""
-            android:layout_marginBottom="26dp"
+            android:layout_marginBottom="352dp"
             app:layout_constraintBottom_toTopOf="@+id/floatingActionButton2"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="24dp"
             android:shadowColor="#0C0707"
             app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginTop="42dp"
-            app:layout_constraintTop_toBottomOf="@+id/button_reminder"
-            android:visibility="visible" android:maxLines="7" app:layout_constraintVertical_bias="0.135"/>
+            android:visibility="visible" android:maxLines="7" android:layout_marginTop="19dp"
+            app:layout_constraintTop_toBottomOf="@+id/button_reminder"/>
     <Button
             android:text="@string/open_onenote"
             android:layout_width="wrap_content"
