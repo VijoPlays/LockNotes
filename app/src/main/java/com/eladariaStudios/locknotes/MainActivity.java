@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
     public void newReminder(View view) {
         setNotification(String.valueOf(reminderText.getText()));
 
+        //FIXME: Move this block below the notification.trim() block at some point - that should fix the trim bug on certain messages.
         createNotificationChannel();
         NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
         bigTextStyle.setBigContentTitle("LockNotes");
